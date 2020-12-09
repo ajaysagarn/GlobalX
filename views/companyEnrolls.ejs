@@ -1,0 +1,177 @@
+<% include partials/companyheader.ejs %>
+<div class="container">
+    <div class="company">
+        <h1> 
+            <%=course.title%>
+        </h1>
+
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                            aria-controls="collapseOne">
+                            Enrollments:
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <%if( enrolls && enrolls.length > 0){ %>
+                        <h3>No of enrollments :
+                            <%=enrolls.length%>
+                        </h3>
+
+                        <table id="comp-enroll-enrolls" class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Sl no</th>
+                                    <th>Name</th>
+                                    <th>Experience(y)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% let count=0; %>
+                                <% enrolls.forEach(associate=>{ %>
+                                <tr>
+                                    <td>
+                                        <%=++count%>
+                                    </td>
+                                    <td>
+                                        <%=associate.name%>
+                                    </td>
+                                    <td>
+                                        <%=associate.experience%>
+                                    </td>
+                                </tr>
+                                <%});%>
+                            </tbody>
+                        </table>
+                        <%}else{%>
+                        <div class="alert alert-warning" role="alert">
+                            No company associates are currently enrolled to this course!
+                        </div>
+                        <%}%>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseOne">
+                                Course Completion Report:
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <% if(completed && completed.length > 0){ %>
+                            <table id="comp-enroll-complt" class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Slno</th>
+                                        <th>Employee</th>
+                                        <th>Course</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% let count = 0; %>
+                                    <% completed.forEach(field=>{%>
+                                    <tr>
+                                        <td>
+                                            <%=++count%>
+                                        </td>
+                                        <td>
+                                            <%=field.assocName%>
+                                        </td>
+                                        <td>
+                                            <%=field.CourseTitle%>
+                                        </td>
+                                    </tr>
+                                    <%})%>
+                                </tbody>
+                            </table>
+                            <%}else{%>
+                            <div class="alert alert-warning">None of your employees have completed this course!</div>
+                            <% } %>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree"
+                                    aria-expanded="false" aria-controls="collapseOne">
+                                    Current batches:
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <% if(Batches && Batches.length>0){%>
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Slno</th>
+                                            <th>Course</th>
+                                            <th>No of Students</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <% let count = 0 %>
+                                            <% Batches.forEach(batch=>{ %>
+                                        <tr>
+                                            <td>
+                                                <%= ++count %>
+                                            </td>
+                                            <td>
+                                                <%= batch.courseTitle %>
+                                            </td>
+                                            <td>
+                                                <%= batch.associateId.length %>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <form action="/company/<%=company.username%>/batchdetails/<%=batch._id%>" action="get">
+                                                        <button class="btn btn-outline-primary btn-sm">More details</button>
+                                                    </form>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                                <%}else{%>
+                                <div class="alert alert-warning">None of your employees are in a batch for this
+                                    course!</div>
+                                <%}%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    //alert("document loaded");
+    $("#sel-course-opt").addClass("active");
+    $("#comp-enroll-complt").DataTable();
+    $("#comp-enroll-enrolls").DataTable();
+});
+</script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>

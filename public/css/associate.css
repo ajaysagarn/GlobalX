@@ -1,0 +1,108 @@
+
+.container .associate{
+    margin-top: 75px;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link{
+    color :  rgba(0, 153, 0,0.7);
+}
+
+.navbar-nav li.active > a{
+    color : rgba(0, 153, 0,0.7);
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color : rgba(255, 255, 255,0.7);
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color : rgba(0, 153, 0,0.7);
+}
+
+#more{
+    margin-left:15px;
+    margin-top: 10px;
+}
+
+#gen-plan{
+    text-align: center;
+    margin : 10px auto 0 auto;
+}
+
+.btn-link{
+    color : rgba(39, 105, 39, 0.7);
+}
+
+.container .alert{
+    margin-top: 75px;
+}
+
+.fa{
+    margin-right : 25px;
+    color : rgba(255, 255, 255,0.7);
+}
+
+form a .active{
+    color: rgba(0, 153, 0,0.7);
+}
+
+form a .fa:hover{
+    color: rgba(0, 153, 0,0.7);
+}
+
+.schedule tbody td{
+    height: 35px;
+    background: grey;
+    text-align: center;
+}
+.schedule thead td{
+    
+    text-align: center;
+}
+
+.schedule tbody .slot-avail{
+    background : green;
+}
+
+.schedule tbody .slot-block{
+    background : red;
+}
+
+td form .btn-outline-danger {
+    color: #fff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #fafafa;
+    width: 100%;
+}
+.card-body .alert{
+    margin:0px;
+}
+
+#plan-here .alert{
+    margin : 0px;
+    margin-bottom: 15px;
+}
+
+.col-lg-6 .alert{
+    margin : 0px;
+}
+
+#loading{
+    margin-left: auto;
+    margin-right: auto;
+    visibility: hidden;
+}
+
+td button{
+    /* margin-left: 3px; */
+    margin-right : 3px;
+}
+
+.container #successmsg{
+    margin-top: 70px;
+}
+
+.container #failmsg{
+    margin-top: 70px;
+}

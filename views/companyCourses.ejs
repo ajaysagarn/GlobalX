@@ -1,0 +1,64 @@
+<% include partials/associateheader.ejs %>
+
+<div class="container">
+    <div class="associate">
+        <%if( courses && courses.length > 0){ %>
+        <h1>Courses Available</h1>
+        <table id="assoc-comp-courses" class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th>SL NO</th>
+                    <th>Course Title</th>
+                    <th>Minimum Experience Required</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let count = 1 %>
+                <% courses.forEach(course => { %>
+                <tr>
+                    <td>
+                        <%= count++ %>
+                    </td>
+                    <td>
+                        <%= course.title %>
+                    </td>
+                    <td>
+                        <%= course.experience%>
+                    </td>
+                    <td>
+                    <td>
+                        <div class="row">
+                            <form action="/associate/<%=associate.username%>/details/<%=course._id%>" method="GET">
+                                <button class="btn btn-outline-primary btn-sm" type="submit">Details</button>
+                            </form>
+                            <form action="/associate/<%=associate.username%>/gcourses/<%=course._id%>" method="POST">
+                                <button class="btn btn-outline-success btn-sm" type="submit">Enroll</button>
+                            </form>
+                        </div>
+
+                    </td>
+                    </td>
+                </tr>
+                <%});%>
+            </tbody>
+        </table>
+        <%}else{%>
+        <div class="alert alert-warning" role="alert">
+            Your Company does not have any courses in its curriculum or you are enrolled to all available courses!
+        </div>
+        <%}%>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert("document loaded");
+        $("#sel-course-opt").addClass("active");
+        $('#assoc-comp-courses').DataTable();
+    });
+</script>

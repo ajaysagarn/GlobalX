@@ -1,0 +1,94 @@
+<% include partials/adminheader.ejs %>
+
+<div class="container">
+    <div class="schedule">
+            <span id="credits" data-credits="<%=credits%>"></span>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <h2 style=" text-align:center;">Create a new Course</h2>
+                <form action="/admin/course" method="POST">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" name="title" placeholder="Course Title*"
+                        autocomplete="off" required>
+                    </div>
+                    <label><h5>Experience Required:</h5></label>
+                    <div class="form-row">
+                        <div class="col-lg-6"><input class="form-control" type="number" name="experience" placeholder="Minimum Experience*"
+                                min="0" required></div>
+                        <div class="col-lg-6">
+                            <select class="form-control form-control-sm" name="expType">
+                                <option value='1'>years</option>
+                                <option value='2'>months</option>
+                            </select></div>
+
+                    </div>
+                    <br>
+                    <label><h5>Credit Details :</h5></label>
+                    <div class="row border">
+                        <div class="col-md-6 border-right">
+                                <label>Credits Allotted : </label>
+                            <div class="form-group">
+                                    
+                                <input class="form-control" type="text" name="allotCredName" id="credAllot" autocomplete="off" placeholder="Credit Name*" pattern="[a-zA-Z0-9]*" required>
+                                        
+                                <input class="form-control" type="number" name="allotCreditCount" placeholder="Credit count*" min="1"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Credits Required :</label>
+                                <div id="more_rcredits">                                                                           
+                                        <select class="form-control form-control-sm" name="reqCredName" aria-placeholder="Credit Name">
+                                            <option>none</option>
+                                            <%  credits.forEach( credit => { %>
+                                            <option value="<%=credit%>">
+                                                <%= credit %>
+                                                </option>
+                                                <% }); %>
+                                            </select>                                       
+                                       
+                                            <input class="form-control" type="number" name="reqCredCount" placeholder="Credit count*" min="1">       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" style="margin-top: 15px; margin-left: 42%" class="btn btn-outline-primary">ADD COURSE</button>
+                </form>
+            </div>
+            <div class="col-lg-2"></div>
+
+        </div>
+
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    let creds = [];
+    let credits = $("#credits").data("credits");
+    let temp= "";
+    for(i=0;i<credits.length;i++){
+        if(credits[i] == ','){
+            creds.push(temp);
+            temp = "";
+            continue;
+        }
+        temp += credits[i]; 
+    }
+    creds.push(temp);
+
+    console.log(creds);
+
+   $(function() {
+            $( "#credAllot" ).autocomplete({
+               source: creds
+            });
+         });
+</script>
+
+<% include partials/footer.ejs %>

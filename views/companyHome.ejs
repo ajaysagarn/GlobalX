@@ -1,0 +1,84 @@
+<% include partials/companyheader.ejs %>
+
+<div class="container">
+    <div class="company">
+        <h1>Welcome
+            <%= company.name %>
+        </h1>
+        <!-- <form action="/company/<%=company.username%>/gcourses" method = "GET">
+            <button type="submit">Create Curriculum</button>
+            </form>
+            <form action="/companyLogout" method = "GET">
+                <button type="submit">Logout</button>
+            </form>-->
+        <%if( curriculum && curriculum.length > 0){ %>
+        <h3> current courses in curriculum: </h3>
+        <table id="comp-sel-courses" class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th>SL NO</th>
+                    <th>Course Title</th>
+                    <th>Minimum Experience Required</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let count = 1 %>
+                <% curriculum.forEach( course => { %>
+                <tr>
+                    <td>
+                        <%= count++ %>
+                    </td>
+                    <td>
+                        <%= course.title %>
+                    </td>
+                    <td>
+                        <%= course.experience%>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <form action="/company/<%=company.username%>/<%=course._id%>/enrolls" method="GET">
+                                <button class="btn btn-outline-primary btn-sm">Details</button></form>
+                            <form action="/company/<%=company.username%>/<%=course._id%>/remove" class="rm-course-form"
+                                method="GET">
+                                <button type="button" class="btn btn-outline-danger btn-sm rm-course">Remove</button></form>
+                        </div>
+
+                    </td>
+
+                </tr>
+                <%});%>
+            </tbody>
+        </table>
+        <%}else{%>
+        <div class="alert alert-warning" role="alert">
+            NO courses selected!! please add some courses to your curriculum!!
+        </div>
+        <%}%>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert("document loaded");
+        $('#comp-sel-courses').DataTable();
+        $("#opt-comp-courses").addClass("active");
+        var rem_form = document.querySelectorAll(".rm-course-form");
+        var rem = document.querySelectorAll(".rm-course");
+        // alert(rem_form.length);
+        // alert(rem.length);
+        for (let i = 0; i < rem.length; i++) {
+            rem[i].addEventListener("click", () => {
+                if (confirm("Are you sure you want to remove this course? Any current batches of this course will still continue. All company enrollments will be discarded.")) {
+                    rem_form[i].submit();
+                }
+            })
+        }
+
+    });
+</script>
+<% include partials/footer.ejs %>

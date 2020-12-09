@@ -1,0 +1,33 @@
+<% include partials/associateheader.ejs %>
+<div class="container">
+    <div class="associate">
+        <h1>Batch Details : </h1>
+        <div class="container">
+            <table class="table table-sm table-hover">
+                <tbody>
+                    <tr>
+                        <td class="border-right">Course</td>
+                        <td>
+                            <%= course.title %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-right">Instructor</td>
+                        <td>
+                            <%= instructor.name %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-right">Classroom</td>
+                        <td>
+                            <%=bclass.name%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-right">No of Students</td>
+                        <td>
+                            <%=associates.length%>
+                        </td>
+                        </tr>
+                </tbody>
+        </div>

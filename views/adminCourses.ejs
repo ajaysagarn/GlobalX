@@ -1,0 +1,119 @@
+<% include partials/adminheader.ejs %>
+
+
+<!-- <ul>
+<% gcourses.forEach(course => {  %>
+    <li><%= course.title %></li>
+    <form id = "delete_f" action = '/admin/course/<%=course._id%>?_method=DELETE' method="POST">
+    <button id="delete">DELETE</button>
+    </form>
+    <form action = '/admin/course/eform/<%=course._id %>' method="GET">
+    <button type="submit">EDIT</button>
+    </form>
+<% }); %>
+</ul> -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-7">
+            <div class="container">
+                <div id="content">
+                    <%if( gcourses && gcourses.length > 0){ %>
+                    <h2>GlobalX Courses </h2>
+                    <table id="adminCourses" class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th>SL NO</th>
+                                <th>Course Title</th>
+                                <th>Minimum Experience Required</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let count = 1 %>
+                            <% gcourses.forEach( course => { %>
+                            <tr>
+                                <td>
+                                    <%= count++ %>
+                                </td>
+                                <td>
+                                    <%= course.title %>
+                                </td>
+                                <td>
+                                    <%= course.experience%>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <form action='/admin/course/<%=course._id %>/details' method="GET">
+                                            <button class="btn btn-outline-primary btn-sm " type="submit">Details</button>
+                                        </form>
+                                        <form action='/admin/course/eform/<%=course._id %>' method="GET">
+                                            <button class="btn btn-outline-warning btn-sm " type="submit">EDIT</button>
+                                        </form>
+                                        <form class="delete-course-form" action='/admin/course/<%=course._id%>?_method=DELETE'
+                                            method="POST">
+                                            <button type="button" class="btn btn-outline-danger btn-sm delete-course">DELETE</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            <%});%>
+                        </tbody>
+                    </table>
+                    <%}else{%>
+                    <div class="alert alert-warning" role="alert">
+                        Courses are empty..Please add some courses!
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+            </form> -->
+            <form class="add-new" action="/admin/course/cform" method="GET">
+                <button class="btn btn-outline-success" type="submit">Add new Course</button>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+
+<script type="text/javascript">
+    var del = document.querySelectorAll(".delete-course");
+    var del_f = document.querySelectorAll(".delete-course-form");
+    //  alert(del.length);
+    //  alert(del_f.length);
+    for (let i = 0; i < del.length; i++) {
+        del[i].addEventListener('click', function () {
+            let status = confirm("Are you sure you want to delete this course? Any current batches of this course will still continue . All enrollments will be discarded ");
+            if (status) {
+                //alert("deleting");
+                $(del_f[i]).submit();
+            }
+            else {
+                //alert("cancelled")
+            }
+        })
+    }
+    console.log("logging from js");
+    //console.log(gcourses);
+
+    $(document).ready(function () {
+        //alert("document loaded");
+        $("#course-opt").addClass("active");
+        $('#adminCourses').DataTable();
+    });
+
+
+</script>
+
+<% include partials/footer.ejs %>

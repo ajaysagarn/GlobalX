@@ -1,0 +1,151 @@
+<% include partials/associateheader.ejs %>
+<% let Jsonassoc = JSON.stringify(associate); %>
+<span id="assoc" data-associate="<%=Jsonassoc%>"></span>
+<div class="container">
+    <div class="associate">
+        <h1> Welcome
+            <%= associate.name %>
+        </h1>
+        <h2>
+            Daily Schedule:
+        </h2>
+        <table class="schedule table table-sm">
+            <thead>
+                <tr>
+                    <td>9am-10am</td>
+                    <td>10am-11am</td>
+                    <td>11am-12pm</td>
+                    <td>12pm-1pm</td>
+                    <td>1pm-2pm</td>
+                    <td>2pm-3pm</td>
+                    <td>3pm-4pm</td>
+                    <td>4pm-5pm</td>
+                    <td>5pm-6pm</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="assoc-slot1"><span id="slot-det0"></span></td>
+                    <td id="assoc-slot2"><span id="slot-det1"></span></td>
+                    <td id="assoc-slot3"><span id="slot-det2"></span></td>
+                    <td id="assoc-slot4"><span id="slot-det3"></span></td>
+                    <td>BREAK</td>
+                    <td id="assoc-slot5"><span id="slot-det4"></span></td>
+                    <td id="assoc-slot6"><span id="slot-det5"></span></td>
+                    <td id="assoc-slot7"><span id="slot-det6"></span></td>
+                    <td id="assoc-slot8"><span id="slot-det7"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                            aria-controls="collapseOne">
+                            Enrolled Courses :
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <%if( courses && courses.length > 0){ %>
+                        <table id="assoc-enrolled-courses" class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th>SL NO</th>
+                                    <th>Course Title</th>
+                                    <th>Minimum Experience Required</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% let count = 1 %>
+                                <% console.log(courses); %>
+                                <% courses.forEach(course => { %>
+                                <tr>
+                                    <td>
+                                        <%= count++ %>
+                                    </td>
+                                    <td>
+                                        <%= course.title %>
+                                    </td>
+                                    <td>
+                                        <%= course.experience%>
+                                    </td>
+                                    <td>
+                                        <form action="/associate/<%=associate._id%>/gcourses/<%=course._id%>?_method=delete"
+                                            method="POST">
+                                            <button class="btn btn-outline-info btn-sm" type="submit">Cancel</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <%});%>
+                            </tbody>
+                        </table>
+                        <%}else{%>
+                        <div class="alert alert-warning" role="alert">
+                            You have not enrolled to any of the Courses. click on select courses to enroll to
+                            available courses.
+                        </div>
+                        <%}%>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseOne">
+                                Courses Completed
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <% if(completed && completed.length>0){ %>
+                            <table id="assoc-completed" class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Slno</th>
+                                        <th>Course</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% let count = 0; %>
+                                    <% completed.forEach(course=>{ %>
+                                    <tr>
+                                        <td>
+                                            <%=++count%>
+                                        </td>
+                                        <td>
+                                            <%=course.CourseTitle%>
+                                        </td>
+                                    </tr>
+                                    <%})%>
+                                </tbody>
+                            </table>
+                            <%}else{%>
+                            <div class="alert alert-warning">You have not completed any course!</div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+<script type="text/javascript" src="/js/associate.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert("document loaded");
+        $("#enroll-opt").addClass("active");
+        $("#assoc-enrolled-courses").DataTable();
+        $("#assoc-completed").DataTable();
+    });
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>

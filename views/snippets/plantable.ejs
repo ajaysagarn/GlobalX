@@ -1,0 +1,86 @@
+<%if ((cplan != null) && (cplan != undefined) && !(cplan.length==0)){ %>
+<h4>Course Plan</h4>
+
+<div class="alert alert-info"> Enroll and complete these courses in the order in which they are displayed below. For
+    courses displayed below for which experience required is greater than your current experience, Please enroll to
+    them after you have enough experience! </div>
+<h5>Can take these course(s):</h5>
+<table class="table table-sm border border-success">
+    <thead class="border border-success">
+        <tr class="border border-success">
+            <th class="border-top border-success">slno</th>
+            <th class="border-top border-success">Course</th>
+            <th class="border-top border-success">When to take</th>
+            <th class="border-top border-success">Experience Required</th>
+            <th class="border-top border-success"></th>
+        </tr>
+    </thead>
+    <tbody class="border border-success">
+        <% let count = 0 %>
+        <% for(var i=0; i < cplan.length; i++) { %>
+        <tr class="border border-success">
+            <td>
+                <%=++count%>
+            </td>
+            <td>
+                <%= cplan[i].course_title %>
+            </td>
+            <% if(cplan[i].to_schedule <= 0 ){ %>
+            <td>NOW</td>
+            <%}else{%>
+            <td>
+                After
+                <%= cplan[i].to_schedule %>
+            </td>
+            <%}%>
+            <td>
+                <%= cplan[i].experience %>
+            </td>
+            <td>
+                <form action="/associate/<%=associate.username%>/details/<%=cplan[i].C_id%>" method="GET">
+                    <button class="btn btn-outline-primary btn-sm" type="submit">Details</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<%}else{%>
+<div class="alert alert-warning">You cannot Take any of the selected courses!!</div>
+<%}%>
+<hr>
+
+<%if ((cannottake != null) && (cannottake != undefined) && !(cannottake.length == 0)){ %>
+<h5>Cannot take these course(s)</h5>
+<table class="table table-sm border border-danger">
+    <thead class="border border-danger">
+        <tr class="border border-danger">
+            <th class="border-top border-danger">slno</th>
+            <th class="border-top border-danger">Course</th>
+            <th class="border-top border-danger">Experience Required</th>
+            <th class="border-top border-danger"></th>
+        </tr>
+    </thead>
+    <tbody class="border border-danger">
+        <% count = 0 %>
+        <% for(var i=0; i < cannottake.length; i++) { %>
+        <tr class="border-bottom border-danger">
+            <td>
+                <%= ++count %>
+            </td>
+            <td>
+                <%= cannottake[i].course_title %>
+            </td>
+            <td>
+                <%=cannottake[i].experience %>
+            </td>
+            <td>
+                <form action="/associate/<%=associate.username%>/details/<%=cannottake[i].C_id%>" method="GET">
+                    <button class="btn btn-outline-primary btn-sm" type="submit">Details</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<%}%>

@@ -1,0 +1,100 @@
+<% include partials/adminheader.ejs %>
+<div class="container">
+    <div class="schedule">
+            <h1>
+                    Courses to be Scheduled :
+                </h1>
+                <%if( courses && courses.length > 0){ %>
+                <table class="table table-hover">
+                        <tr>
+                            <th>SL NO</th>
+                            <th>Course Title</th>
+                            <th>Minimum Experience Required</th>
+                            <th>Options</th>
+                        </tr>
+                        <% let count = 1 %>
+                        <% courses.forEach(course => { %>
+                        <tr>
+                            <td>
+                                <%= count++ %>
+                            </td>
+                            <td>
+                                <%= course.title %>
+                            </td>
+                            <td>
+                                <%= course.experience%>
+                            </td>
+                            <td>
+                                <form action = "/admin/schedule/<%=course._id%>" method = "GET">
+                                <button class="btn btn-outline-primary btn-sm" type="submit">Schedule</button>
+                            </form>
+                            </td>
+                        </tr>
+                        <%});%>
+                    </table>
+                <%}else{%>
+                    <div class="alert alert-warning" role="alert">
+                    None of the courses have enough enrollments to be scheduled!
+                </div>
+                <%}%>
+    </div>
+    <br>
+    <hr>
+    <div class="Batches">
+        <h2>Current batches:</h2>
+        <%if( batches && batches.length > 0){ %>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Slno</th>
+                    <th>Course</th>
+                    <th>No of Students</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <% let count = 0 %>
+                    <% batches.forEach(batch=>{ %>
+                        <tr>
+                            <td><%= ++count %></td>
+                            <td><%= batch.courseTitle %></td>
+                            <td><%= batch.associateId.length %></td>
+                            <td>
+                                <div class="row">
+                                    <form action="/admin/batchdetails/<%=batch._id%>" action="get">
+                                        <button class="btn btn-outline-primary btn-sm" >More details</button>
+                                    </form>
+                                    <form action="/admin/endBatch/<%=batch._id%>" class="end-batform">
+                                        <button type="button" class="btn btn-outline-danger btn-sm finish-batch" >End Batch</button>
+                                    </form>
+                                </div>
+                                
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tr>
+            </tbody>
+
+        </table>
+        <%}else{%>
+            <div class="alert alert-warning" role="alert">
+            No batches available !!!
+            </div>
+        <%}%>
+    </div>
+       
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/scheduleCourses.js"></script>
+
+        <script type="text/javascript">
+        $(document).ready(function() {
+        //alert("document loaded");
+        $("#schedule-opt").addClass("active");
+    });
+    </script>;
+ 
+

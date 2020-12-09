@@ -1,0 +1,51 @@
+
+<!-- <% include partials/homepageheader.ejs %>
+<h1>You are in Global x Homepage</h1>
+
+<form action="/admin" method ="GET">
+    <button type = submit class="btn btn-outline-primary"> ADMIN </button>
+    </form>
+<form action="/companyLogin" method ="GET">
+    <button type = submit class="btn btn-outline-primary"> Company </button>
+</form>
+<form action="/associateLogin" method ="GET">
+    <button type = submit class="btn btn-outline-primary"> Associate </button>
+</form>
+
+<% include partials/footer.ejs %> -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GLOBALX</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/home.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+    </head>
+    <body>
+    
+   
+    
+    <div id="landing-header">
+ 		<h1>Welcome to <span id="global">GLOBAL</span><span id="X">X</span></h1>
+        <form action="/admin/course" method ="GET">
+            <button type = submit class="btn btn-success btn-lg"> ADMIN </button>
+            </form>
+        <form action="/companyLogin" method ="GET">
+            <button type = submit class="btn btn-success btn-lg"> Company </button>
+        </form>
+        <form action="/associateLogin" method ="GET">
+            <button type = submit class="btn btn-success btn-lg"> Associate </button>
+        </form>
+    </div>
+    
+    <ul class="slideshow">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+<% include partials/footer %>

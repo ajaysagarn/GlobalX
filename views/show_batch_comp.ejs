@@ -1,0 +1,70 @@
+<% include partials/companyheader.ejs %>
+<% let timings = ["9am-10am","10am-11am","11am-12pm", "12pm-1pm", "2pm-3pm","3pm-4pm","4pm-5pm","5pm-6pm"] %>
+<div class="container">
+    <div class="company">
+        <h1>Batch Details : </h1>
+        <div class="container">
+            <table class="table table-sm table-hover">
+                <tbody>
+                    <tr>
+                        <td class="border-right">Course</td>
+                        <td>
+                            <%= course.title %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-right">Instructor</td>
+                        <td>
+                            <%= instructor.name %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-right">Classroom</td>
+                        <td>
+                            <%=bclass.name%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-right">Timings</td>
+                        <td>
+                            <%=timings[Batch.slotno]%>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <h2>Enrolled associates</h2>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>Slno</th>
+                        <th>Name</th>
+                        <th>company</th>
+                        <th>Experience</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% let count= 0 %>
+                    <%associates.forEach(assoc=>{ %>
+                    <tr>
+                        <td>
+                            <%= ++count %>
+                        </td>
+                        <td>
+                            <%= assoc.name %>
+                        </td>
+                        <td>
+                            <%=assoc.companyName %>
+                        </td>
+                        <td>
+                            <%= assoc.experience %>
+                        </td>
+                    </tr>
+                    <% })%>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

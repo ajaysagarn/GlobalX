@@ -1,0 +1,56 @@
+<% include partials/associateheader.ejs %>
+<span id="username-holder" data-associd="<%=associate.username%>"></span>
+<div class="container">
+    <div class="associate">
+        <h1> Course Planner: </h1>
+        <form class="course-plan">
+            <div class="row">
+                <div class="col-md-6 border-right">
+                    Select Courses:
+                    <div class="instr-courses">
+                        <select class="form-control" name="course[]">
+                            <% courses.forEach( course => {%>
+                            <option value="<%=course._id %>">
+                                <%=course.title%>
+                            </option>
+                            <%})%>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <button type="button" id="more" class="add-course-sel btn btn-outline-secondary"> more </button><br>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    Set Duration:
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input name="duration" class="form-control" type="number" placeholder="Duration*" min= 0 required>
+                        </div>
+                        <div class="col-md-6">
+                            <select name="dur_type" class="form-control">
+                                <option>years</option>
+                                <option>months</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-outline-success btn-lg" id="gen-plan" type="submit">Generate Plan</button>
+            </div>
+        </form>
+        <hr>
+        <div id="plan-here">
+            <img id="loading" src="/images/loading.gif" >
+            
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert("document loaded");
+        $("#sel-planner-opt").addClass("active");
+    });
+</script>
+<script type="text/javascript" src="\js\planner.js"></script>

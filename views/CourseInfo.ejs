@@ -1,0 +1,68 @@
+<% include partials/associateheader.ejs %>
+
+<div class="container">
+    <div class="associate">
+        <h3>Course Details :</h3>
+        <hr>
+        <h4>Title :
+            <%=course.title%>
+        </h4>
+        <h4>Experience Required :
+            <%=course.experience%>
+        </h4>
+        <hr>
+        <div class="row">
+            <div class="col-lg-6 border-right">
+                <h5>Credits Required:</h5>
+                <% if(reqCredits && reqCredits.length > 0){%>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Credit Name</th>
+                            <th>Credit Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%  reqCredits.forEach(credit=>{ %>
+                        <tr>
+                            <td>
+                                <%= credit.CreditName %>
+                            </td>
+                            <td>
+                                <%= credit.CreditCount %>
+                            </td>
+                        </tr>
+                        <% })%>
+                    </tbody>
+                </table>
+                <%}else{%>
+                <div class="alert alert-info">No credits Required for this course!</div>
+                <%}%>
+
+            </div>
+            <div class="col-lg-6">
+                <h5>Credits Allotted:</h5>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Credit Name</th>
+                            <th>Credit Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%   allotcreds.forEach(credit=>{ %>
+                        <tr>
+                            <td>
+                                <%= credit.CreditName %>
+                            </td>
+                            <td>
+                                <%= credit.CreditCount %>
+                            </td>
+                        </tr>
+                        <% })%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<% include partials/adminheader.ejs %>
+<div class="container">
+    <div class="row resources" >
+        <div class="col-md-6 instructor border-right">
+                <h3>Add New Instructor</h3>
+                <form class="instr-reg">
+                    <label>Instructor Name :<input class="form-control" type="text" name="instName" pattern="[a-zA-Z\s]*" autocomplete="off" required></label><br>
+                    <label>Courses thaught :
+                        <div class="instr-courses">
+                            <div><select class="form-control" name="course[]">
+                                    <% courses.forEach( course => {%>
+                                    <option value="<%=course._id %>">
+                                        <%=course.title%>
+                                    </option>
+                                    <%})%>
+                                </select></div>
+                        </div>
+                        <div class="row">
+                                <button type="button" id="more" class="add-course-sel btn btn-outline-secondary"> more </button><br>
+                                <button class="btn btn-outline-primary" id="add" type="submit">Add</button>
+                        </div>
+                    </label>
+                </form>
+        </div>
+        <div class="col-md-6">
+                <h3>Add new Classroom</h3>
+                <form class="class-reg">
+                    <div class="form-group">
+                            <label>Classroom Name :<input class="form-control" type="number" name="className" min="1" max="999" autocomplete="off" required></label><br>
+                            <button class="btn btn-outline-primary" type="submit">create</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        //alert("document loaded");
+        $("#resource-opt").addClass("active");
+    });
+    </script>
+    <script type="text/javascript" src="\js\resource.js"></script>

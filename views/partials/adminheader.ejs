@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
+    <link rel="stylesheet" href="\css\admin.css">
+    <title>GlobalX Admin</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+        <form action="/" method="GET" id="home-link">
+            <a class="navbar-brand" href="#" id="home-btn"><img src="/images/LOGO.png" width="100" height="35" class="d-inline-block align-top"></a>
+        </form>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item" >
+                    <form action="/admin/course" method="GET">
+                        <button class="nav-link btn btn-outline-dark"  type="submit" id="course-opt">
+                            Course Options
+                        </button>
+                    </form>
+                </li>
+                <li class="nav-item" >
+                    <form action ="/admin/schedule" method="GET">
+                    <button class="nav-link btn btn-outline-dark" id="schedule-opt"  type="submit">
+                        Schedule Options
+                    </button>
+                    </form>
+                </li>
+                <li class="nav-item" >
+                    <form action="/admin/resource" method="GET">
+                        <button class="nav-link btn btn-outline-dark" id="resource-opt" type="submit">
+                            Manage Resourses
+                        </button>
+                    </form>
+                </li>
+        </div>
+
+    </nav>
+    <% if((success && success.length > 0)||( error && error.length > 0)){ %>
+    <div class="container">
+        <%if( success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                    <%= success %>
+             </div>
+        <% } %>
+        <%if( error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                    <%= error %>
+             </div>
+        <% } %>
+    </div>
+    <%}%>
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+        
+        $("#home-btn").click(function() {
+        //alert("clicked home");
+        var home = document.getElementById("home-link");
+        console.log(home);
+        home.submit();
+
+    });
+
+    </script>

@@ -1,0 +1,27 @@
+
+
+table tbody td{
+    height: 35px;
+    background: grey;
+}
+
+.slot-avail{
+    background : green;
+}
+
+.slot-block{
+    background : red;
+}
+
+td button{
+    width: 100%;
+    height: 100%;
+}
+
+#break-btn{
+    background : none;
+}
+
+.container .alert{
+    margin-top: 75px;
+}

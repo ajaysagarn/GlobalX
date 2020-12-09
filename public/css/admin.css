@@ -1,0 +1,142 @@
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link{
+    color :  rgba(0, 153, 0,0.7);
+}
+
+.container-fluid{
+    margin-top : 75px;
+}
+
+.container .resources{
+    margin-top: 125px
+}
+
+.container .schedule{
+    margin-top: 125px
+}
+
+.navbar-nav li.active > a{
+    color : rgba(0, 153, 0,0.7);
+}
+
+#content{
+    
+    text-align: left;
+}
+
+.add-new .btn-outline-success{
+    margin-top: 30px;
+}
+
+
+
+.btn .btn-outline-warning .btn-sm .edit{
+    width: 100%;
+}
+
+
+.navbar-light .navbar-nav .active{
+    color : rgba(0, 153, 0,0.7);
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color : rgba(255, 255, 255,0.7);
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color : rgba(0, 153, 0,0.7);
+}
+
+
+#delete{
+    margin-left : 10px;
+}
+
+#more{
+    margin-left:15px;
+    margin-top: 10px;
+}
+
+#add{
+    margin-left:5px;
+    margin-top: 10px;
+
+}
+
+.container .alert{
+    margin-top: 75px;
+}
+
+#bat-details {
+    margin-bottom: 25px;
+}
+
+#bat-details .row{
+    display: inline;
+}
+
+#scheduler-table td{
+    padding : 0;
+}
+
+.row .btn{
+    margin-left : 2px;
+    margin-right : 2px;
+}
+
+.table .alert{
+    margin : 0;
+}
+
+.card-body .alert{
+    margin:0px;
+}
+
+.card form .btn{
+    margin : 3px;
+}
+
+.col-lg-6 .alert {
+    margin: 0px;
+}
+
+.ui-autocomplete.ui-widget {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;   
+    padding: 4px 0;
+    margin: 0 0 10px 25px;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+  }
+  .ui-state-hover, .ui-state-active {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: dimgray;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    background-image: none;
+}
+  .ui-helper-hidden-accessible { 
+      display:none; 
+    }

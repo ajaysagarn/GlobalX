@@ -1,0 +1,116 @@
+<% include partials/adminheader.ejs %>
+<link rel="stylesheet" href="\css\styles.css">
+<span id="no-enrolls" data-enrolls="<%=enrolls.length%>"></span>
+<div class="container">
+    <div class="schedule">
+            <h1>Batch Scheduler</h1>
+            <h2>Course : <%=course.title%></h2>
+            <h4>No of enrollments :<%= enrolls.length %></h4>
+            <span id="batch-selector"><label>BatchSize :</label><select class="bat-size"><option selected = "selected" disabled><%=enrolls.length%></option></select> </span>
+            <hr>
+            <div class="sel-instr">
+            <label>Select instructor:<select class="instructor"><div class="bat-instr">
+                <option selected="selected" disabled>----Select Instructor----</option>
+                <% instructors.forEach(instructor=> { %>
+                    <% if( instructor != null){ %>
+                        <option value="<%=instructor._id%>"> <%=instructor.name %> </option>
+                   <% } %>
+                    
+                <% }); %>
+            </div></select></label>
+            <span class="inst-avail-tbl">
+                <table class="table"> 
+                    <thead>
+                        <td>9am-10am</td>
+                        <td>10am-11am</td>
+                        <td>11am-12pm</td>
+                        <td>12pm-1pm</td>
+                        <td>1pm-2pm</td>
+                        <td>2pm-3pm</td>
+                        <td>3pm-4pm</td>
+                        <td>4pm-5pm</td>
+                        <td>5pm-6pm</td>    
+                    </thead>
+                    <tbody>
+                            <td id="inst-slot1"></td>
+                            <td id="inst-slot2"></td>
+                            <td id="inst-slot3"></td>
+                            <td id="inst-slot4"></td>
+                            <td >BREAK</td>
+                            <td id="inst-slot5"></td>
+                            <td id="inst-slot6"></td>
+                            <td id="inst-slot7"></td>
+                            <td id="inst-slot8"></td>    
+                    </tbody>
+                </table>
+            </span>
+            </div>
+            <div class="sel-class">
+                <label>Select Classrooms:<select class="classroom"><div class="bat-class">
+                        <option selected="selected" disabled>----Select classroom----</option>
+                    <% classroom.forEach( Class => { %>
+                        <option value="<%=Class._id%>"> <%= Class.name %> </option>
+                    <% }); %>
+                    
+                </div></select></label>
+                <span class="class-avail-tbl">
+                        <table class="table" id="scheduler-table">
+                            <thead>
+                                <td>9am-10am</td>
+                                <td>10am-11am</td>
+                                <td>11am-12pm</td>
+                                <td>12pm-1pm</td>
+                                <td>1pm-2pm</td>
+                                <td>2pm-3pm</td>
+                                <td>3pm-4pm</td>
+                                <td>4pm-5pm</td>
+                                <td>5pm-6pm</td>    
+                            </thead>
+                            <tbody>
+                                    <td id="class-slot1"></td>
+                                    <td id="class-slot2"></td>
+                                    <td id="class-slot3"></td>
+                                    <td id="class-slot4"></td>
+                                    <td >BREAK</td>
+                                    <td id="class-slot5"></td>
+                                    <td id="class-slot6"></td>
+                                    <td id="class-slot7"></td>
+                                    <td id="class-slot8"></td>
+                                    <tr>
+                                            <td><button class="btn btn-primary" type="button">SELECT</button></td>
+                                            <td><button class="btn btn-primary" type="button">SELECT</button></td>
+                                            <td><button class="btn btn-primary" type="button">SELECT</button></td>
+                                            <td><button class="btn btn-primary" type="button">SELECT</button></td>
+                                            <td id="break-btn"></td>
+                                            <td><button class="btn btn-primary" type="button">SELECT</button></td>
+                                            <td><button class="btn btn-primary" type="button">SELECT</button></td>
+                                            <td><button class="btn btn-primary" type="button">SELECT</button></td>
+                                            <td><button class="btn btn-primary" type="button">SELECT</button></td>
+                                    </tr>    
+                            </tbody>
+                        </table>
+                    </span>
+            </div>
+            <button class="btn btn-outline-success" type="button" id="btn-sch" disabled> SCHEDULE </button>
+            
+            <hr>
+            <h4> Batches Scheduled : </h4>
+            <% let batchids = [] %>
+            <% batches.forEach( batch=>{ %>
+                <% batchids.push(batch._id); %>
+            <% }); %>
+            
+            <span class="batches" data-batches="<%= batchids %>"></span>
+            <div class="row">
+            <div id="bat-details">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!------------------endpopup-------------------------------------------- -->
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src = "\js\batchSchedule.js"></script>

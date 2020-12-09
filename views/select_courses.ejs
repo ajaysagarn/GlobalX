@@ -1,0 +1,74 @@
+<% include partials/companyheader.ejs %>
+<div class="container">
+    <div class="company">
+        <%if( courses && courses.length > 0){ %>
+        <h1>GlobalX Courses available : </h1>
+        <table id="sel-courses" class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th>SL NO</th>
+                    <th>Course Title</th>
+                    <th>Minimum Experience Required</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let count = 1 %>
+                <% courses.forEach(course => { %>
+                <tr>
+                    <td>
+                        <%= count++ %>
+                    </td>
+                    <td>
+                        <%= course.title %>
+                    </td>
+                    <td>
+                        <%= course.experience%>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <form action="/company/<%=company.username%>/gcourses/<%=course._id%>/details" method="GET">
+                                <button class="btn btn-outline-primary btn-sm" style="margin-right:10px;" type="submit">Details</button>
+                            </form>
+                            <form action="/company/<%=company.username%>/gcourses/<%=course._id%>" class="comp-sel-form"
+                                method="POST">
+                                <button class="btn btn-outline-success btn-sm comp-sel-course" type="submit">Select</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <%});%>
+            </tbody>
+
+        </table>
+        <%}else{%>
+        <div class="alert alert-warning" role="alert">
+            No Courses available or All courses have already been selected!
+        </div>
+        <%}%>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert("document loaded");
+        $("#opt-comp-curriculum").addClass("active");
+        let sel = document.querySelectorAll(".comp-sel-course");
+        let sel_form = document.querySelectorAll(".comp-sel-form");
+        // alert(sel_form.length);
+        // alert(sel.length);
+        $('#sel-courses').DataTable();
+
+        for (i = 0; i < sel.length; i++) {
+            sel[i].addEventListener("click", () => {
+                if (confirm("Are you sure you want to add this course to your curriculum?")) {
+                    sel_form[i].submit();
+                }
+            })
+        }
+
+    });
+</script>

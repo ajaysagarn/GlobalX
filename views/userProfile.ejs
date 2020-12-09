@@ -1,0 +1,84 @@
+<% include partials/associateheader.ejs %>
+
+<div class="container">
+    <div class="associate">
+        <h2>User Profile</h2>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Name :</td>
+                    <td>
+                        <%= associate.name %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Company :</td>
+                    <td>
+                        <%= associate.companyName %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Experience :</td>
+                    <td>
+                        <%= associate.experience %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Credits:</h3>
+        <% if(credits && credits.length > 0){ %>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Credit Name</th>
+                        <th>Credit Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% credits.forEach(credit=>{ %>
+                        <tr>
+                                <td><%=credit.CreditName %></td>
+                                <td><%= credit.CreditCount %></td>
+                            </tr>
+                   <% }) %>
+                    
+                </tbody>
+            </table>
+    <%}else{ %>
+        <div class="alert alert-warning">You do not have any credits!!</div>
+    <% } %>
+    <hr>
+        <%if(complete && complete.length > 0){%>
+            <h2>Courses completed :</h2>
+            <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Slno</th>
+                    <th>Course</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let count=0 %>
+                <% complete.forEach(course=>{ %>
+                    <tr>
+                        <td><%= ++count %></td>
+                        <td><%= course.CourseTitle %></td>
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+        <%}else{ %>
+            <div class="alert alert-warning">You have not Complete any course</div>
+        <%}%>
+    
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        //alert("document loaded");
+        $("#prof-ic").addClass("active");
+    });
+    </script>
