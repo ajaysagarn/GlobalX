@@ -1,3 +1,3 @@
 # GlobalX
 
-Global X Project created as part of training at ESKO
+Class scheduling project using Node Js and ejs
